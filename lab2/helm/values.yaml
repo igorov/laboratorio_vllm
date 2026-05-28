@@ -6,7 +6,7 @@ image:
   pullPolicy: IfNotPresent
 
 model:
-  name: "qwen2.5:0.5b"
+  name: "qwen2.5:0.5b"     # modelo pequeño que corre bien en CPU (~400 MB)
 
 resources:
   requests:
@@ -18,9 +18,4 @@ resources:
 
 service:
   type: ClusterIP
-  port: 11434      # Ollama usa el puerto 11434
-
-metrics:
-  path: "/metrics"
-  port: 11434
-  interval: "10s"
+  port: 11434              # puerto nativo de Ollama

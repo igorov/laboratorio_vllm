@@ -5,7 +5,6 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     app: {{ .Release.Name }}
-    release: monitoring   # necesario para que Prometheus descubra el servicio
 spec:
   type: {{ .Values.service.type }}
   ports:

@@ -1,6 +1,6 @@
 apiVersion: v2
-name: vllm-lab
-description: vLLM serving chart para el lab de AI Solution Architect
+name: ollama-lab
+description: Ollama serving chart para el lab de AI Solution Architect
 type: application
 version: 0.1.0
-appVersion: "0.6.3"
+appVersion: "latest"
