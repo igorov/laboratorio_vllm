@@ -19,6 +19,9 @@ spec:
         - name: vllm
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: VLLM_CPU_KVCACHE_SPACE
+              value: "2"
           args:
             - "{{ .Values.model.name }}"
             - "--device"

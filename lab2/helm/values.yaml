@@ -17,7 +17,7 @@ resources:
     memory: "3Gi"
   limits:
     cpu: "4"
-    memory: "6Gi"
+    memory: "10Gi"
   # Para el entregable con GPU, descomenta esto:
   # gpu:
   #   nvidia.com/gpu: "1"
