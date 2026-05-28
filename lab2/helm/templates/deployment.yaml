@@ -30,6 +30,8 @@ spec:
             - "{{ .Values.model.dtype }}"
             - "--max-model-len"
             - "{{ .Values.model.maxModelLen }}"
+            - "--guided-decoding-backend"
+            - "lm-format-enforcer"
             - "--host"
             - "0.0.0.0"
             - "--port"
