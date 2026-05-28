@@ -13,10 +13,10 @@ model:
 
 resources:
   requests:
-    cpu: "2"
-    memory: "3Gi"
+    cpu: "500m"
+    memory: "4Gi"
   limits:
-    cpu: "4"
+    cpu: "2"
     memory: "10Gi"
   # Para el entregable con GPU, descomenta esto:
   # gpu:
