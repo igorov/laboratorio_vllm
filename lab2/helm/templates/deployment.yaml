@@ -23,6 +23,7 @@ spec:
             - name: VLLM_CPU_KVCACHE_SPACE
               value: "2"
           args:
+            - "--model"
             - "{{ .Values.model.name }}"
             - "--device"
             - "{{ .Values.model.device }}"
