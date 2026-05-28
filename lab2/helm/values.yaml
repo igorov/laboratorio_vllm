@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: vllm-lab
-  tag: "v1"
-  pullPolicy: Never     # Never porque la imagen viene de kind, no de un registry
+  repository: vllm/vllm-openai
+  tag: "v0.6.3"
+  pullPolicy: IfNotPresent
 
 model:
   name: "Qwen/Qwen2.5-0.5B-Instruct"
