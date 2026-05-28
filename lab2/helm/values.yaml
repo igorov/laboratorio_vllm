@@ -1,0 +1,32 @@
+replicaCount: 1
+
+image:
+  repository: vllm-lab
+  tag: "v1"
+  pullPolicy: Never     # Never porque la imagen viene de kind, no de un registry
+
+model:
+  name: "Qwen/Qwen2.5-0.5B-Instruct"
+  dtype: "float32"      # float32 para CPU — en GPU usarías float16 o bfloat16
+  device: "cpu"         # "cpu" para el lab, "cuda" para el entregable con GPU
+  maxModelLen: 2048     # context window máximo
+
+resources:
+  requests:
+    cpu: "2"
+    memory: "3Gi"
+  limits:
+    cpu: "4"
+    memory: "6Gi"
+  # Para el entregable con GPU, descomenta esto:
+  # gpu:
+  #   nvidia.com/gpu: "1"
+
+service:
+  type: ClusterIP
+  port: 8000
+
+metrics:
+  path: "/metrics"
+  port: 8000
+  interval: "10s"
