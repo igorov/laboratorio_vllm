@@ -16,27 +16,18 @@ spec:
         app: {{ .Release.Name }}
     spec:
       containers:
-        - name: vllm
+        - name: ollama
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            - name: VLLM_CPU_KVCACHE_SPACE
-              value: "2"
-          args:
-            - "--model"
-            - "{{ .Values.model.name }}"
-            - "--device"
-            - "{{ .Values.model.device }}"
-            - "--dtype"
-            - "{{ .Values.model.dtype }}"
-            - "--max-model-len"
-            - "{{ .Values.model.maxModelLen }}"
-            - "--host"
-            - "0.0.0.0"
-            - "--port"
-            - "8000"
           ports:
-            - containerPort: 8000
+            - containerPort: 11434
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "/bin/sh"
+                  - "-c"
+                  - "sleep 5 && ollama pull {{ .Values.model.name }}"
           resources:
             requests:
               cpu: {{ .Values.resources.requests.cpu | quote }}
@@ -46,14 +37,8 @@ spec:
               memory: {{ .Values.resources.limits.memory | quote }}
           readinessProbe:
             httpGet:
-              path: /health
-              port: 8000
-            initialDelaySeconds: 60
-            periodSeconds: 10
+              path: /
+              port: 11434
+            initialDelaySeconds: 10
+            periodSeconds: 5
             failureThreshold: 30
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8000
-            initialDelaySeconds: 120
-            periodSeconds: 30

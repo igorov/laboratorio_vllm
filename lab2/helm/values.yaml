@@ -1,32 +1,26 @@
 replicaCount: 1
 
 image:
-  repository: vllm/vllm-openai
-  tag: "v0.6.6"
+  repository: ollama/ollama
+  tag: "latest"
   pullPolicy: IfNotPresent
 
 model:
-  name: "Qwen/Qwen2.5-0.5B-Instruct"
-  dtype: "float32"      # float32 para CPU — en GPU usarías float16 o bfloat16
-  device: "cpu"         # "cpu" para el lab, "cuda" para el entregable con GPU
-  maxModelLen: 2048     # context window máximo
+  name: "qwen2.5:0.5b"
 
 resources:
   requests:
     cpu: "500m"
-    memory: "4Gi"
+    memory: "2Gi"
   limits:
     cpu: "2"
-    memory: "10Gi"
-  # Para el entregable con GPU, descomenta esto:
-  # gpu:
-  #   nvidia.com/gpu: "1"
+    memory: "4Gi"
 
 service:
   type: ClusterIP
-  port: 8000
+  port: 11434      # Ollama usa el puerto 11434
 
 metrics:
   path: "/metrics"
-  port: 8000
+  port: 11434
   interval: "10s"
