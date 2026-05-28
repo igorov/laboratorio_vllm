@@ -8,7 +8,7 @@ WORKDIR /build
 # Instala vLLM y sus dependencias en el entorno de build
 RUN pip install --no-cache-dir \
     "vllm==0.6.3" \
-    "transformers==4.44.2"
+    "transformers==4.46.3"
 
 # ============================================================
 # Stage 2: runtime — imagen final sin herramientas de build
